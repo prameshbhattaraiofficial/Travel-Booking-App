@@ -16,7 +16,17 @@ class _AddtocartState extends State<Addtocart> {
 
         body: Column(
           children: [
+            Row(
+              children: [
 
+                Text("First Name "),
+                Text("Group"),
+
+
+                Text(" hajs")
+
+              ],
+            ),
           ],
         ),
       ),

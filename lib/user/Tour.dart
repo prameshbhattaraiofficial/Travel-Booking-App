@@ -133,7 +133,7 @@ class _TourState extends State<Tour> {
     );
   }
 
-  void _newTaskModalBottomSheet(context, name) {
+  void _newTaskModalBottomSheet(context,name) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc) {
@@ -141,24 +141,56 @@ class _TourState extends State<Tour> {
             child: new Wrap(
               children: <Widget>[
                 Padding(padding: EdgeInsets.all(10)
-                    , child: Column(
+                    , child:   Column(
                       children: [
+
                         Text(name, style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                            fontFamily: "cursive"
+
+                            fontWeight: FontWeight.bold, fontSize: 30, fontFamily: "cursive"
                         ),),
 
-                        Text("Available time : 10AM - 5PM" + "     Sun- Fri",
-                          style: TextStyle(
-                              fontSize: 18
-                          ),),
-                        Text("Duration : 8 hours" + "        Price  30\$",
-                          style: TextStyle(
-                              fontSize: 18
-                          ),)
+                        Text("Enter Your Name ", style: TextStyle(
+                            fontSize: 15
+                        ),),
+                        TextField(
+                          decoration: InputDecoration(
+
+
+                            fillColor: Colors.white,
+                            filled: true,
+                            hintText: 'Your Name ',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)
+
+                            ),
+                          ),
+
+                        ),
+
+                        Text("Enter Your Number ", style: TextStyle(
+                            fontSize: 15
+                        ),),
+                        TextField(
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+
+
+                            fillColor: Colors.white,
+                            filled: true,
+                            hintText: 'Your Number ',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)
+
+                            ),
+                          ),
+
+                        ),
+
+
                       ],
                     )
+
+
 
 
                 ),
@@ -170,11 +202,12 @@ class _TourState extends State<Tour> {
                       child: Column(
                         children: [
                           Text("How Many People Visit there?", style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold
+                              fontSize: 15
                           ),),
 
 
                           TextField(
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
 
 
@@ -198,11 +231,11 @@ class _TourState extends State<Tour> {
                   children: [
 
                     Text(" Total : 30\$", style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 20,
+                        fontSize: 20,
                         color: Colors.deepOrangeAccent
                     ),),
 
-                    ElevatedButton(onPressed: () {},
+                    ElevatedButton(onPressed: (){},
                         child:
                         Row(
                           children: [
@@ -210,8 +243,7 @@ class _TourState extends State<Tour> {
                             Text("Book Now")
                           ],
                         ), style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
                                     side: BorderSide(color: Colors.blue)

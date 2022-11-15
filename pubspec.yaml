@@ -35,10 +35,17 @@ dependencies:
   firebase_auth:
   firebase_core:
   profile: ^0.0.1
+  booking_calendar: ^1.1.6
+  image_picker: ^0.8.6
+  textfield_datepicker: ^0.1.0
+  cloud_firestore:
+  images_picker:
 
 
   flutter:
     sdk: flutter
+  email_validator: ^2.0.1
+  intl: ^0.17.0
 
 
   # The following adds the Cupertino Icons font to your application.

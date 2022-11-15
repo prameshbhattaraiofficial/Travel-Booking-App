@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "663686597183",
+    "project_id": "smart-tourism-project",
+    "storage_bucket": "smart-tourism-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663686597183:android:e62662b1aef9ccc36ac68a",
+        "android_client_info": {
+          "package_name": "com.example.smarttourism"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663686597183-h127o3efu28ok25jquka41emcs8dej68.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDelU2s00Xa2DTXxrUTvixROdv37pIO0jA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663686597183-h127o3efu28ok25jquka41emcs8dej68.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

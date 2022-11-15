@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
+
 import 'package:smarttourism/user/otpfile.dart';
 
 class Emailauth extends StatefulWidget {
@@ -32,15 +32,17 @@ class _EmailauthState extends State<Emailauth> {
                   Container(
 
                     padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height*0.3
+                        top: MediaQuery.of(context).size.height*0.2
                     ),
                     child: Form(
                       key: formkey,
                       child: Column(
                           children: [
 
-                            Image(image: AssetImage('Assets/google.png'),
-                            width: 200,),
+                            Image(image: AssetImage('Assets/logo.png'),
+                            width: 100,),
+
+                            SizedBox(height: 50,),
 
                             Padding(
                               padding: EdgeInsets.only(left: 20),
@@ -60,6 +62,7 @@ class _EmailauthState extends State<Emailauth> {
                             Padding(
                               padding: EdgeInsets.only(left: 10, right: 10),
                               child: TextFormField(
+                                keyboardType: TextInputType.emailAddress,
                                 onChanged: (val) {
                                   var email = val;
                                 },
@@ -74,11 +77,12 @@ class _EmailauthState extends State<Emailauth> {
                                 ),
                                 validator: (value){
                                   if(value!.isEmpty){
-                                    return "Required";
-                                  }else{
-                                    return null;
-                                  }
-                                },
+                                    return "Enter Email here *";
+                                  } if(!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9._]+.[a-z]").hasMatch(value)){
+                                    return "Please Enter a valid email";
+                                  };
+                                  return null;
+                                }
                               ),
                             ),
                             SizedBox(height: 20,),
@@ -97,14 +101,14 @@ class _EmailauthState extends State<Emailauth> {
 
                                  ElevatedButton(onPressed: (){
                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Otpfile()));
-                                   // if(formkey.currentState!.validate()){
-                                   //
-                                   // }
+                                    if(formkey.currentState!.validate()){
+
+                                    }
                                  }, child: Text(
                                    'Next', style: TextStyle(
                                      decoration: TextDecoration.none,
                                      fontSize: 20,
-                                     color: Colors.lightGreen
+
                                  ),
                                  )),
                                ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smarttourism/Bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:smarttourism/user/Emailauth.dart';
 import 'package:smarttourism/user/Housepage.dart';
+import 'package:smarttourism/user/forgetpassword.dart';
 
 class Otpfile extends StatefulWidget {
   const Otpfile({Key? key}) : super(key: key);
@@ -29,20 +30,22 @@ class _OtpfileState extends State<Otpfile> {
                   Container(
 
                     padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height*0.3
+                        top: MediaQuery.of(context).size.height*0.2
                     ),
                     child: Form(
                       key: formkey,
                       child: Column(
                           children: [
 
-                            Image(image: AssetImage('Assets/google.png'),
-                              width: 200,),
+                            Image(image: AssetImage('Assets/logo.png', ),
+                              width: 100,),
+
+                            SizedBox(height: 20,),
 
                             Padding(
                               padding: EdgeInsets.only(left: 20),
                               child: Text("An Email with varification code was sent to your mail.",style: TextStyle(
-                                  fontSize: 20
+                                  fontSize: 18
                               ),),
                             ),
 
@@ -57,9 +60,8 @@ class _OtpfileState extends State<Otpfile> {
                             Padding(
                               padding: EdgeInsets.only(left: 10, right: 10),
                               child: TextFormField(
-
+                                keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
-
                                     fillColor: Colors.black12,
                                     filled: true,
                                     hintText: 'Enter Code',
@@ -69,7 +71,7 @@ class _OtpfileState extends State<Otpfile> {
                                 ),
                                 validator: (value){
                                   if(value!.isEmpty){
-                                    return "Required";
+                                    return "Enter Code here *";
                                   }else{
                                     return null;
                                   }
@@ -86,12 +88,12 @@ class _OtpfileState extends State<Otpfile> {
                                   GestureDetector(
                                     child: Text("Try Another Option", style: TextStyle(decoration: TextDecoration.none, color: Colors.blue, fontSize: 18)),
                                     onTap: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> DefaultHome()));
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ForgetPassword()));
                                     },
                                   ),
 
                                   ElevatedButton(onPressed: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> MyApp()));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> ForgetPassword()));
                                     if(formkey.currentState!.validate()){
 
                                     }
@@ -99,7 +101,7 @@ class _OtpfileState extends State<Otpfile> {
                                     'Next', style: TextStyle(
                                       decoration: TextDecoration.none,
                                       fontSize: 20,
-                                      color: Colors.lightGreen
+
                                   ),
                                   )),
                                 ],

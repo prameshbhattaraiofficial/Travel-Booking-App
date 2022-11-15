@@ -1,7 +1,10 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smarttourism/user/register.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:textfield_datepicker/textfield_datepicker.dart';
 
 class Slights extends StatefulWidget {
   const Slights({Key? key}) : super(key: key);
@@ -11,6 +14,7 @@ class Slights extends StatefulWidget {
 }
 
 class _SlightsState extends State<Slights> {
+
 
   List<String> entries = <String>[
     'Assets/1.png',
@@ -47,6 +51,15 @@ class _SlightsState extends State<Slights> {
     'kailali'
   ];
 
+  TextEditingController Dateinput = TextEditingController();
+
+  @override
+  void initstate(){
+    Dateinput.text = "";
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,22 +67,21 @@ class _SlightsState extends State<Slights> {
       home: Scaffold(
         body: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Expanded(
                   child:  ListView.builder(
-                  padding: const EdgeInsets.all(8),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: entries.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _rows(entries[index], placename[index]);
-                  }
+                      padding: const EdgeInsets.all(5),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: entries.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return _rows(entries[index], placename[index]);
+                      }
 
-              ))
+                  ))
               ,
               Expanded(
                   child:ListView.builder(
-                      padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(5),
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: entries.length,
@@ -95,13 +107,11 @@ class _SlightsState extends State<Slights> {
       child: InkWell(
         child: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(40),
               image: DecorationImage(
                   image: AssetImage(images),
                   fit: BoxFit.fill
               )
-
-
           ),
 
           width: 150.0,
@@ -117,7 +127,7 @@ class _SlightsState extends State<Slights> {
                       fontSize: 20, color: Colors.pink
                   ),),
                   SizedBox(width: 20,),
-                  Icon(Icons.favorite_border,),
+                  Icon(Icons.bookmark_add_outlined,),
 
                 ],
               ),
@@ -143,17 +153,88 @@ void _newTaskModalBottomSheet(context,name) {
               Padding(padding: EdgeInsets.all(10)
                   , child:   Column(
                     children: [
+
                       Text(name, style: TextStyle(
+
                           fontWeight: FontWeight.bold, fontSize: 30, fontFamily: "cursive"
                       ),),
 
-                      Text("Available time : 10AM - 5PM"+"     Sun- Fri", style: TextStyle(
-                          fontSize: 18
+                    Text("Enter Your Name ", style: TextStyle(
+                      fontSize: 15
+                    ),),
+                      TextFormField(
+
+                        decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          prefixIcon: Icon(Icons.person),
+                          filled: true,
+                          hintText: 'Your Name ',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10)
+
+                          ),
+                        ),
+
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter Your Name *";
+                          } else {
+                            return null;
+                          }
+                        },
+
+                      ),
+
+                      Text("Enter Your Number ", style: TextStyle(
+                          fontSize: 15
                       ),),
-                      Text("Duration : 8 hours"+"        Price  30\$",style: TextStyle(
-                          fontSize: 18
+                      TextFormField(
+
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          hintText: 'Your Number ',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10)
+
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter Your Number *";
+                          } else {
+                            return null;
+                          }
+                        },
+
+                      ),
+
+                      Text("Choose Your Date ", style: TextStyle(
+                          fontSize: 15
                       ),),
-                      
+                      TextFormField(
+                        keyboardType: TextInputType.datetime,
+                        decoration: InputDecoration(
+                          icon: Icon(Icons.calendar_today_rounded),
+                          fillColor: Colors.white,
+                          filled: true,
+                          hintText: ' Choose Your Date ',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10)
+
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Please Choose your Date *";
+                          } else {
+                            return null;
+                          }
+                        },
+
+                      ),
+
 
                     ],
                   )
@@ -170,14 +251,13 @@ void _newTaskModalBottomSheet(context,name) {
                     child: Column(
                       children: [
                         Text("How Many People Visit there?", style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold
+                            fontSize: 15
                         ),),
 
 
                         TextField(
+                          keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-
-
                             fillColor: Colors.white,
                             filled: true,
                             hintText: 'Total person ',
@@ -198,7 +278,7 @@ void _newTaskModalBottomSheet(context,name) {
                 children: [
 
                   Text(" Total : 30\$", style: TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 20,
+                       fontSize: 20,
                       color: Colors.deepOrangeAccent
                   ),),
 
@@ -229,10 +309,3 @@ void _newTaskModalBottomSheet(context,name) {
       }
   );
 }
-
-
-
-
-
-
-

@@ -141,54 +141,87 @@ void _newTaskModalBottomSheet(context,name) {
         return Container(
           child: new Wrap(
             children: <Widget>[
-Padding(padding: EdgeInsets.all(10)
-    , child:   Column(
-      children: [
-        Text(name, style: TextStyle(
-          fontWeight: FontWeight.bold, fontSize: 30, fontFamily: "cursive"
-        ),),
+              Padding(padding: EdgeInsets.all(10)
+                  , child:   Column(
+                    children: [
 
-        Text("Available time : 10AM - 5PM"+"     Sun- Fri", style: TextStyle(
-          fontSize: 18
-        ),),
-        Text("Duration : 8 hours"+"        Price  30\$",style: TextStyle(
-          fontSize: 18
-        ),)
-      ],
-    )
+                      Text(name, style: TextStyle(
 
+                          fontWeight: FontWeight.bold, fontSize: 30, fontFamily: "cursive"
+                      ),),
+
+                      Text("Enter Your Name ", style: TextStyle(
+                          fontSize: 15
+                      ),),
+                      TextField(
+                        decoration: InputDecoration(
 
 
+                          fillColor: Colors.white,
+                          filled: true,
+                          hintText: 'Your Name ',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10)
 
-),
+                          ),
+                        ),
+
+                      ),
+
+                      Text("Enter Your Number ", style: TextStyle(
+                          fontSize: 15
+                      ),),
+                      TextField(
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          hintText: 'Your Number ',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10)
+
+                          ),
+                        ),
+
+                      ),
+
+
+                    ],
+                  )
+
+
+
+
+              ),
 
 
               Column(
                 children: [
-                 Padding(padding: EdgeInsets.all(15),
-                 child: Column(
-                   children: [
-                     Text("How Many People Visit there?", style: TextStyle(
-                       fontSize: 20, fontWeight: FontWeight.bold
-                     ),),
+                  Padding(padding: EdgeInsets.all(15),
+                    child: Column(
+                      children: [
+                        Text("How Many People Visit there?", style: TextStyle(
+                            fontSize: 15
+                        ),),
 
 
-                     TextField(
-                       decoration: InputDecoration(
+                        TextField(
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
 
 
-                         fillColor: Colors.white,
-                         filled: true,
-                         hintText: 'Total person ',
-                         border: OutlineInputBorder(
-                             borderRadius: BorderRadius.circular(10)
+                            fillColor: Colors.white,
+                            filled: true,
+                            hintText: 'Total person ',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)
 
-                         ),
-                       ),
+                            ),
+                          ),
 
-                     ),
-                   ],
-                 ),)
+                        ),
+                      ],
+                    ),)
                 ],
               ),
 
@@ -197,18 +230,18 @@ Padding(padding: EdgeInsets.all(10)
                 children: [
 
                   Text(" Total : 30\$", style: TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 30,
-                    color: Colors.deepOrangeAccent
+                      fontSize: 20,
+                      color: Colors.deepOrangeAccent
                   ),),
-                  
+
                   ElevatedButton(onPressed: (){},
                       child:
-                          Row(
-         children: [
+                      Row(
+                        children: [
 
-           Text("Book Now")
-         ],
-        ), style: ButtonStyle(
+                          Text("Book Now")
+                        ],
+                      ), style: ButtonStyle(
                           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(18.0),
@@ -216,7 +249,7 @@ Padding(padding: EdgeInsets.all(10)
                               )
                           )
                       )
-                     
+
                   )
 
 

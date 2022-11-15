@@ -78,9 +78,6 @@ class _DefaultHomeState extends State<DefaultHome>
                 ),
               ),
 
-
-
-
               //tabbar view
               Container(
                 width: double.maxFinite,

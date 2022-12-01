@@ -289,6 +289,7 @@ Future _newTaskModalBottomSheet(context, name) {
               total,
             );
 
+
             if (res != 'success') {
               showSnackBar(context, res);
             }

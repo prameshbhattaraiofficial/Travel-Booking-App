@@ -14,7 +14,7 @@ void main() async{
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     initialRoute: 'welcome',
-    routes: {'welcome' : (context)=>Dashboard(),},
+    routes: {'welcome' : (context)=> Dashboard(),},
   ));
 }
 

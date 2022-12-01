@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:smarttourism/admin/Adding_Travel.dart';
 import 'package:smarttourism/admin/Analysis.dart';
@@ -12,6 +10,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:smarttourism/user/Welcomepage.dart';
 import 'package:smarttourism/user/mylogin.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -21,10 +21,19 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+
+
+
+  Future<void> Logout() async{
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Mylogin()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Center(child: Text("Admin Login")),
         iconTheme: IconThemeData(color: Colors.black),
 
       ),
@@ -43,15 +52,15 @@ class _DashboardState extends State<Dashboard> {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> Dashboard()));
               },
             ),
-            ListTile(
-              leading: Icon(
-                Icons.people,
-              ),
-              title: const Text('Customer'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> CustomerAdmin()));
-              },
-            ),
+            // ListTile(
+            //   leading: Icon(
+            //     Icons.people,
+            //   ),
+            //   title: const Text('Customer'),
+            //   onTap: () {
+            //     Navigator.push(context, MaterialPageRoute(builder: (context)=> CustomerAdmin()));
+            //   },
+            // ),
 
             ListTile(
               leading: Icon(
@@ -98,36 +107,25 @@ class _DashboardState extends State<Dashboard> {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
               },
             ),
-            SizedBox(height: 250,),
+            SizedBox(height: 300,),
             ListTile(
               leading: Icon(
                 Icons.logout,
               ),
               title: const Text('Logout'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> Welcomepage()));
+                Logout();
+                // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Mylogin()));
+                // Navigator.push(context, MaterialPageRoute(builder: (context)=> Welcomepage()));
               },
             ),
 
           ],
         ),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 50,
-              
-              
-            ),
-            
-            Text("Welcome to Admin Dashboard" ,style: TextStyle(
-              fontSize: 20
-            ),)
-          ],
-          
-        ),
-      ),
+      body: Scaffold(
+        body: DashBoards(),
+      )
     );
   }
   }
@@ -137,3 +135,79 @@ class _DashboardState extends State<Dashboard> {
   // await auth.signOut();
   // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Mylogin()))
   // }
+
+
+  class DashBoards extends StatefulWidget {
+    const DashBoards({Key? key}) : super(key: key);
+
+    @override
+    State<DashBoards> createState() => _DashBoardsState();
+  }
+
+  class _DashBoardsState extends State<DashBoards> {
+
+
+    List<String> entries = <String>[
+      'Assets/1.png',
+      'Assets/2.jpg',
+      'Assets/3.jpg',
+      'Assets/4.jpg',
+      'Assets/5.png',
+      'Assets/6.jpg',
+      'Assets/7.jpg',
+      'Assets/8.jpg',
+      'Assets/9.jpg',
+      'Assets/10.png',
+      'Assets/11.jpg',
+      'Assets/12.jpg',
+      'Assets/13.jpg',
+      'Assets/14.jpg',
+      'Assets/15.jpg',
+
+    ];
+    @override
+    Widget build(BuildContext context) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: SafeArea(
+            child: Column(
+              children: [
+
+                Text("This page is in processing"),
+                Expanded(
+                    child:  ListView.builder(
+                        padding: const EdgeInsets.all(5),
+                        scrollDirection: Axis.vertical,
+                        itemCount: entries.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return    Container(
+
+                            margin: const EdgeInsets.only(right: 20, bottom: 20),
+                            width: 200,
+                            height: 300,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                      'Assets/1.png',
+
+                                    ),
+                                    fit: BoxFit.fill
+
+                                )
+                            ),
+
+                          );//_rows(entries[index], placename[index]);
+                        }
+
+                    )),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+  }
+

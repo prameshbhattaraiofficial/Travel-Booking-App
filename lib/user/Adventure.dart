@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:english_words/english_words.dart';
 
 class Adventure extends StatefulWidget {
   const Adventure({Key? key}) : super(key: key);
@@ -53,32 +54,32 @@ class _AdventureState extends State<Adventure> {
           child: Column(
 
             children: [
+          Expanded(
+          child: ListView.separated(
+          padding: const EdgeInsets.all(5),
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemCount: entries.length,
+          itemBuilder: (BuildContext context, int index) {
+            return _rows(entries[index], placename[index]);
+          },
+          separatorBuilder: (BuildContext context, int index) =>
+          const SizedBox(width: 15,),
+
+        )),
               Expanded(
-                  child:
-                  ListView.builder(
-                      padding: const EdgeInsets.all(8),
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemCount: entries.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return _rows(entries[index], placename[index]);
-                      }
+                  child: ListView.separated(
+                    padding: const EdgeInsets.all(5),
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: entries.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _rows(entries[index], placename[index]);
+                    },
+                    separatorBuilder: (BuildContext context, int index) =>
+                    const SizedBox(width: 15,),
+                  )),
 
-                  )
-
-
-              )
-              ,
-              Expanded(
-                  child:ListView.builder(
-                      padding: const EdgeInsets.all(8),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: entries.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return _rows(entries[index], placename[index]);
-                      }
-
-                  ))
 
             ],
 

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smarttourism/Bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:smarttourism/user/Housepage.dart';
@@ -10,6 +11,25 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
+
+  final _auth = FirebaseAuth.instance;
+
+  Future<String> passwordReset({
+    required String email,
+  }) async {
+    String res = "some error occur";
+    try {
+      if (email.isNotEmpty) {
+        await _auth.sendPasswordResetEmail(email: email);
+        return res = "success";
+      } else {
+        res = "Enter valid email";
+      }
+    } catch (e) {
+      return e.toString();
+    }
+    return res;
+  }
   @override
   Widget build(BuildContext context) {
     return Container(

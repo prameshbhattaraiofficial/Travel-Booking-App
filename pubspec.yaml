@@ -40,6 +40,19 @@ dependencies:
   textfield_datepicker: ^0.1.0
   cloud_firestore:
   images_picker:
+  english_words:
+  provider:
+  date_time_picker:
+  fluttertoast:
+  social_share: ^2.3.1
+  flutter_share: ^2.0.0
+  firebase_analytics:
+  firebase_storage:
+  material_design_icons_flutter: ^5.0.6996
+  cached_network_image: ^3.2.1
+  mask_text_input_formatter:
+  shared_preferences:
+
 
 
   flutter:
@@ -56,6 +69,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  provider:
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

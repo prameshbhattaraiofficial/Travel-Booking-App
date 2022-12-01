@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:english_words/english_words.dart';
 
 
 class Tour extends StatefulWidget {
@@ -56,28 +57,33 @@ class _TourState extends State<Tour> {
 
             children: [
 
-              Expanded(
-                  child: ListView.builder(
-                  padding: const EdgeInsets.all(8),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: entries.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _rows(entries[index], placename[index]);
-                  }
+          Expanded(
+          child: ListView.separated(
+          padding: const EdgeInsets.all(5),
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemCount: entries.length,
+          itemBuilder: (BuildContext context, int index) {
+            return _rows(entries[index], placename[index]);
+          },
+          separatorBuilder: (BuildContext context, int index) =>
+          const SizedBox(width: 15,),
+        )),
 
-              ))
-              ,
-              Expanded(
-                  child: ListView.builder(
-                      padding: const EdgeInsets.all(8),
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemCount: entries.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return _rows(entries[index], placename[index]);
-                      }
 
-                  ))
+
+              Expanded(
+                  child: ListView.separated(
+                    padding: const EdgeInsets.all(5),
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemCount: entries.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _rows(entries[index], placename[index]);
+                    },
+                    separatorBuilder: (BuildContext context, int index) =>
+                    const SizedBox(width: 15,),
+                  )),
 
             ],
 
@@ -148,6 +154,11 @@ class _TourState extends State<Tour> {
 
                             fontWeight: FontWeight.bold, fontSize: 30, fontFamily: "cursive"
                         ),),
+                        Wrap(
+                          children: List.generate(5, (index) {
+                            return Icon(Icons.star, color: Colors.amberAccent,);
+                          }),
+                        ),
 
                         Text("Enter Your Name ", style: TextStyle(
                             fontSize: 15
@@ -167,22 +178,31 @@ class _TourState extends State<Tour> {
 
                         ),
 
-                        Text("Enter Your Number ", style: TextStyle(
+
+
+
+                        Text("Choose Your Date ", style: TextStyle(
                             fontSize: 15
                         ),),
-                        TextField(
-                          keyboardType: TextInputType.number,
+                        TextFormField(
+                          keyboardType: TextInputType.datetime,
                           decoration: InputDecoration(
-
-
+                            icon: Icon(Icons.calendar_today_rounded),
                             fillColor: Colors.white,
                             filled: true,
-                            hintText: 'Your Number ',
+                            hintText: ' Choose Your Date ',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10)
 
                             ),
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Please Choose your Date *";
+                            } else {
+                              return null;
+                            }
+                          },
 
                         ),
 
@@ -225,7 +245,6 @@ class _TourState extends State<Tour> {
                       ),)
                   ],
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

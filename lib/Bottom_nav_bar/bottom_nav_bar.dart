@@ -4,6 +4,7 @@ import 'package:smarttourism/Bottom_nav_bar/Search.dart';
 import 'package:smarttourism/Bottom_nav_bar/favourite.dart';
 import 'package:smarttourism/Bottom_nav_bar/setting.dart';
 import 'package:smarttourism/user/Housepage.dart';
+import 'package:smarttourism/user/aboutus.dart';
 import 'package:smarttourism/user/mylogin.dart';
 
 void main() => runApp(const MyApp());
@@ -36,7 +37,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     DefaultHome(),
-    Search(),
+    AboutUs(),
     Favourite(),
    Account()
   ];
@@ -61,8 +62,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Search',
+            icon: Icon(Icons.article),
+            label: 'About Us',
             backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(

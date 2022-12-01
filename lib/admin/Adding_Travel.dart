@@ -4,8 +4,19 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:smarttourism/admin/Analysis.dart';
+import 'package:smarttourism/admin/Dashboard.dart';
+import 'package:smarttourism/admin/Hotelbooking.dart';
+import 'package:smarttourism/admin/customers.dart';
+import 'package:smarttourism/admin/messages.dart';
+import 'package:smarttourism/admin/setting.dart';
+import 'package:smarttourism/user/Welcomepage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:smarttourism/user/mylogin.dart';
 
 class Adding_Travel extends StatefulWidget {
   const Adding_Travel({Key? key}) : super(key: key);
@@ -16,8 +27,13 @@ class Adding_Travel extends StatefulWidget {
 
 class _Adding_TravelState extends State<Adding_Travel> {
 
+   FirebaseFirestore firestoreref = FirebaseFirestore.instance;
+   FirebaseStorage storageref = FirebaseStorage.instance;
+
+  String imagename  = "";
   XFile? image;
   final ImagePicker Picker = ImagePicker();
+
 
 
   Future GetImage(ImageSource media) async {
@@ -76,15 +92,109 @@ class _Adding_TravelState extends State<Adding_Travel> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
 
-  final  TextEditingController NameEditingController = TextEditingController();
-  final  TextEditingController Placeeditingcontroller = TextEditingController();
-  final TextEditingController PriceEditingController = TextEditingController();
-  final TextEditingController ImageEditingController = TextEditingController();
+  final  TextEditingController TravelName = TextEditingController();
+  final  TextEditingController PriceName = TextEditingController();
 
+
+  Future<void> Logout() async{
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Mylogin()));
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
+
+        ),
+        drawer: Drawer(
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.only(top: 50),
+            children: [
+
+              ListTile(
+                leading: Icon(
+                  Icons.home,
+                ),
+                title: const Text('Home'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Dashboard()));
+                },
+              ),
+              // ListTile(
+              //   leading: Icon(
+              //     Icons.people,
+              //   ),
+              //   title: const Text('Customer'),
+              //   onTap: () {
+              //     Navigator.push(context, MaterialPageRoute(builder: (context)=> CustomerAdmin()));
+              //   },
+              // ),
+
+              ListTile(
+                leading: Icon(
+                  Icons.message,
+                ),
+                title: const Text('Messages'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Messages()));
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.analytics,
+                ),
+                title: const Text('Analysis'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Analysis()));
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.book,
+                ),
+                title: const Text('Hotel Booking'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Hotelbooking()));
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.place,
+                ),
+                title: const Text('Adding Places'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Adding_Travel()));
+                },
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.settings,
+                ),
+                title: const Text('Settings'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
+                },
+              ),
+              SizedBox(height: 300,),
+              ListTile(
+                leading: Icon(
+                  Icons.logout,
+                ),
+                title: const Text('Logout'),
+                onTap: () {
+
+                  Logout();
+                  // Navigator.push(context, MaterialPageRoute(builder: (context)=> Welcomepage()));
+                },
+              ),
+
+            ],
+          ),
+        ),
 
         body:
         ListView(
@@ -119,6 +229,7 @@ class _Adding_TravelState extends State<Adding_Travel> {
                         Padding(
                           padding: EdgeInsets.only(left: 10, right: 10),
                           child: TextFormField(
+                            controller: TravelName,
                               keyboardType: TextInputType.emailAddress,
                               onChanged: (val) {
                                 var email = val;
@@ -148,6 +259,7 @@ class _Adding_TravelState extends State<Adding_Travel> {
                         Padding(
                           padding: EdgeInsets.only(left: 10, right: 10),
                           child: TextFormField(
+                            controller: PriceName,
                               keyboardType: TextInputType.phone,
                               onChanged: (val) {
                                 var email = val;
@@ -218,13 +330,50 @@ class _Adding_TravelState extends State<Adding_Travel> {
                           ),
                         ),
 
-                        ElevatedButton(onPressed: (){}, child: Text("Upload"))
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              ElevatedButton(onPressed: (){
+
+                                // upload function
+
+
+                              }, child: Text("Upload")),
+
+                              ElevatedButton(onPressed: (){}, child: Text("Reset")),
+                            ],
+                          ),
+                        )
+
+
+
+
                       ]),
                 ),
               ),]));
 
+
+
+
+  }
+
+  _UploadImage() async{
+    var UniqueKey = firestoreref.collection(imagename);
+    String UploadFileName = DateTime.now().millisecondsSinceEpoch.toString() +'.jpg';
+
+    Reference reference = storageref.ref().child(UploadFileName);
+    // UploadTask uploadTask = reference.putFile(File(kImagePath!.padLeft(width)))
+
+    // UploadTask.snapshotEvents.listen(event){
+    //
+    // }
+
+
   }
 }
+
 
 
 

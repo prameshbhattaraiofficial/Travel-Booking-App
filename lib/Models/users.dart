@@ -1,34 +1,37 @@
-import 'package:smarttourism/Models/admins.dart';
-import 'package:smarttourism/Models/roles.dart';
+class UserModel {
+  String uid;
+  String fullName;
+  String email;
+  String phoneNumber;
+  String address;
+  String? role;
 
+  UserModel(
+      {required this.uid,
+      required this.fullName,
+      required this.email,
+      required this.phoneNumber,
+      required this.address,
+      this.role});
 
- // //class Users {
- //  final int? id;
- //  final String? email;
- //  final String? password;
- //  final String? fullname;
- //  final String? phone;
- //  final String? createdAt;
- //  final String? updatedAt;
- //  final Roles? roles;
- //
- //  Users({this.id, this.email, this.password, this.fullname, this.phone, this.createdAt, this.updatedAt, this.roles});
- //
- //  factory Users.fromJson(Map<String, dynamic> json) {
- //
- //    return Users(
- //        id: json['id'] as int,
- //        email: json['email'] as String,
- //        password: json['password'] as String,
- //        fullname: json['fullname'] as String,
- //        phone: json['phone'] as String,
- //        createdAt: json['createdAt'] as String,
- //        updatedAt: json['updatedAt'] as String,
- //        roles: Roles.fromJson(json['Role']));
- //  }
- //
- //  @override
- //  String toString() {
- //    return 'Users{name: $fullname, email: $email}';
- //  }
-  //}
+  //receiving  data from server
+  factory UserModel.fromMap(map) {
+    return UserModel(
+        uid: map['uid'],
+        fullName: map['fullName'],
+        email: map['email'],
+        phoneNumber: map['phoneNumber'],
+        address: map['address'],
+        role: map['role']);
+  }
+
+  //sending or pushing data into server
+  Map<String, dynamic> toJson() => {
+        'uid': uid,
+        'fullName': fullName,
+        'email': email,
+        'phoneNumber': phoneNumber,
+        'address': address,
+        'role': role
+      };
+}

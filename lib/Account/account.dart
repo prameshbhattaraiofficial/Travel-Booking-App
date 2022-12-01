@@ -1,10 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:profile/profile.dart';
 import 'package:smarttourism/Account/contact.dart';
+import 'package:smarttourism/Visitors/feedback.dart';
+import 'package:smarttourism/admin/Contact.dart';
 import 'package:smarttourism/home.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smarttourism/user/Welcomepage.dart';
+import 'package:smarttourism/user/mylogin.dart';
+import 'package:smarttourism/user/register.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'package:flutter_share/flutter_share.dart';
+
+import 'package:smarttourism/Visitors/feedback.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
@@ -14,6 +23,13 @@ class Account extends StatefulWidget {
 }
 
 class _AccountState extends State<Account> {
+
+
+  Future<void> Logout() async{
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Mylogin()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -56,11 +72,11 @@ class _AccountState extends State<Account> {
                               child:
 
 
-                                  Text(" 100K Follower")
+                                  Text(" Edit Profile")
                                 ,style: ButtonStyle(
                                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                                       RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(18.0),
+                                          // borderRadius: BorderRadius.circular(18.0),
                                           side: BorderSide(color: Colors.blue)
                                       )
                                   )
@@ -69,21 +85,21 @@ class _AccountState extends State<Account> {
                           ),
 
 
-                          ElevatedButton(onPressed: (){},
-                              child:
-
-
-                              Text("20k Following")
-                              ,style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                      RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(18.0),
-                                          side: BorderSide(color: Colors.blue)
-                                      )
-                                  )
-                              )
-
-                          ),
+                          // ElevatedButton(onPressed: (){},
+                          //     child:
+                          //
+                          //
+                          //     Text("20k Following")
+                          //     ,style: ButtonStyle(
+                          //         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          //             RoundedRectangleBorder(
+                          //                 borderRadius: BorderRadius.circular(18.0),
+                          //                 side: BorderSide(color: Colors.blue)
+                          //             )
+                          //         )
+                          //     )
+                          //
+                          // ),
                         ],
                       )
                     ],
@@ -154,14 +170,18 @@ class _AccountState extends State<Account> {
                   title: Text(
                     " Invites"
                   ),
+                  onTap: (){
+
+                  },
                 ),
+
               ),
-              Card(
-                child: ListTile(
-                  leading: new Icon(Icons.favorite_border),
-                 title: Text("Bookmarks"),
-                ),
-              ),
+              // Card(
+              //   child: ListTile(
+              //     leading: new Icon(Icons.favorite_border),
+              //    title: Text("Bookmarks"),
+              //   ),
+              // ),
               Card(
                 child: ListTile(
                   leading: new Icon(Icons.settings),
@@ -174,29 +194,72 @@ class _AccountState extends State<Account> {
                   title: Text("Notification"),
                 ),
               ),
-              SizedBox(height: 10,),
-              
-              Padding(
-                padding: EdgeInsets.only(left: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
 
+              Card(
+                child: ListTile(
 
-                    ElevatedButton(onPressed: (){},
-                        child:
-                       Row(
-                         children: [
-                           Icon(Icons.logout),
-                           
-                           Text("Logout"),
-                         ],
-                       )
-
-                    ),
-                  ],
+                  onTap: (){
+                    Navigator.push(context,
+                        MaterialPageRoute(
+                            builder: (context) => Feedbacksystem()));
+                  },
+                  leading: new Icon(Icons.feedback),
+                  title: Text("Feedback"),
                 ),
-              )
+              ),
+
+
+              Card(
+                child: ListTile(
+
+                  onTap: (){
+                    Navigator.push(context,
+                        MaterialPageRoute(
+                            builder: (context) => ContactAdmin()));
+                  },
+                  leading: new Icon(Icons.contact_phone),
+                  title: Text("Contact"),
+                ),
+              ),
+              SizedBox(height: 10,),
+
+              Card(
+                child: ListTile(
+                  onTap: (){
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) =>
+                    //             Registerpage()));
+
+                    Logout();
+                    // FirebaseAuth.instance.signOut();
+                  },
+                  title: Center(child: Text("Logout")),
+                ),
+
+              ),
+              
+              // Padding(
+              //   padding: EdgeInsets.only(left: 20),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.end,
+              //     children: [
+              //
+              //
+              //       ElevatedButton(onPressed: (){},
+              //           child:
+              //          Row(
+              //            children: [
+              //              Icon(Icons.logout),
+              //
+              //              Text("Logout"),
+              //            ],
+              //          )
+              //
+              //       ),
+              //     ],
+              //   ),
+              // )
 
             ],
 

@@ -1,6 +1,12 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:smarttourism/Models/forget_password.dart';
+import 'package:smarttourism/user/forgetpassword.dart';
+import 'package:smarttourism/user/mylogin.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:smarttourism/Services/globalmethod.dart';
 
 
 import 'package:smarttourism/user/otpfile.dart';
@@ -14,7 +20,76 @@ class Emailauth extends StatefulWidget {
 
 class _EmailauthState extends State<Emailauth> {
 
+  final _auth = FirebaseAuth.instance;
+
+
+  final email = TextEditingController();
+
+  // Future<String> passwordReset({
+  //   required String email,
+  // }) async {
+  //   String res = "some error occur";
+  //   try {
+  //     if (email.isNotEmpty) {
+  //       await _auth.sendPasswordResetEmail(email: email);
+  //       return res = "success";
+  //     } else {
+  //       res = "Enter valid email";
+  //     }
+  //   } catch (e) {
+  //     return e.toString();
+  //   }
+  //   return res;
+  // }
+
+  // String _emailAddress = '';
+  // final _formKey = GlobalKey<FormState>();
+  //
+  // GlobalMethods _globalMethods = GlobalMethods();
+  // bool _isLoading = false;
+  // void _submitForm() async {
+  //   final isValid = _formKey.currentState.validate();
+  //   FocusScope.of(context).unfocus();
+  //   if (isValid) {
+  //     setState(() {
+  //       _isLoading = true;
+  //     });
+  //     _formKey.currentState.save();
+  //     try {
+  //       await _auth
+  //           .sendPasswordResetEmail(email: _emailAddress.trim().toLowerCase())
+  //           .then((value) => Fluttertoast.showToast(
+  //           msg: "An email has been sent",
+  //           toastLength: Toast.LENGTH_SHORT,
+  //           gravity: ToastGravity.CENTER,
+  //           timeInSecForIosWeb: 1,
+  //           backgroundColor: Colors.red,
+  //           textColor: Colors.white,
+  //           fontSize: 16.0));
+  //
+  //       Navigator.canPop(context) ? Navigator.pop(context) : null;
+  //     } catch (error) {
+  //       //_globalMethods.authErrorHandle(error.message, context);
+  //       // print('error occured ${error.message}');
+  //     } finally {
+  //       setState(() {
+  //         _isLoading = false;
+  //       });
+  //     }
+  //   }
+  // }
+
+
+  // Future<void> Logout() async{
+  //   await FirebaseAuth.instance.signOut();
+  //   Navigator.pushAndRemoveUntil((context), MaterialPageRoute(builder: (context) => Mylogin()), (route) => false);
+  // }
+
+
+
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -100,8 +175,13 @@ class _EmailauthState extends State<Emailauth> {
                                  ),
 
                                  ElevatedButton(onPressed: (){
-                                   Navigator.push(context, MaterialPageRoute(builder: (context)=> Otpfile()));
+
+
+
+                                  // passwordReset(email: email.text);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=> ForgetpasswordScreen()));
                                     if(formkey.currentState!.validate()){
+
 
                                     }
                                  }, child: Text(
@@ -118,6 +198,9 @@ class _EmailauthState extends State<Emailauth> {
                           ]),
                     ),
                   ),])));
+
+
+
 
   }
 }

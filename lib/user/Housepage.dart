@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:smarttourism/admin/Adding_Travel.dart';
+import 'package:smarttourism/admin/Analysis.dart';
+import 'package:smarttourism/admin/Dashboard.dart';
+import 'package:smarttourism/admin/Hotelbooking.dart';
+import 'package:smarttourism/admin/customers.dart';
+import 'package:smarttourism/admin/messages.dart';
+import 'package:smarttourism/admin/setting.dart';
 import 'package:smarttourism/user/Adventure.dart';
 import 'package:smarttourism/user/Tour.dart';
+import 'package:smarttourism/user/Welcomepage.dart';
 import 'package:smarttourism/user/register.dart';
 import 'package:smarttourism/user/slights.dart';
 
@@ -27,10 +35,35 @@ class _DefaultHomeState extends State<DefaultHome>
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+
+
         body: Form(
           child: ListView(
             padding: EdgeInsets.all(18),
             children: [
+
+              // Container(
+              //   padding: const EdgeInsets.only(top: 5, left: 10),
+              //  child: Row(
+              //    children: [
+              //      Icon(Icons.menu, size: 30, color: Colors.black,),
+              //
+              //      Expanded(child: Container(
+              //
+              //      )),
+              //      Container(
+              //        width: 50,
+              //        height: 50,
+              //
+              //        decoration: BoxDecoration(
+              //          borderRadius: BorderRadius.circular(10),
+              //          color: Colors.grey.withOpacity(0.5)
+              //        ),
+              //      )
+              //    ],
+              //  ),
+              // ),
+              // SizedBox(height: 10,),
 
 
               Container(
@@ -57,7 +90,7 @@ class _DefaultHomeState extends State<DefaultHome>
               SizedBox(height: 15,),
               //category
               Text("Explore",style: TextStyle(
-                fontSize: 40,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),),
               SizedBox(height: 15,),

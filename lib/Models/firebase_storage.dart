@@ -140,15 +140,30 @@ class FireStoreMethods {
     return res;
   }
 
-  Future<String> bookNow(String date, String name, String total) async {
+  Future<String> bookNow(
+    String date,
+    String name,
+    String total,
+    String currentAddress,
+    String phoneNumber,
+    String destinationAddress,
+  ) async {
     String res = "Some error occurred";
     try {
-      if (date.isNotEmpty && name.isNotEmpty && total.isNotEmpty) {
+      if (date.isNotEmpty &&
+          name.isNotEmpty &&
+          total.isNotEmpty &&
+          currentAddress.isNotEmpty &&
+          phoneNumber.isNotEmpty &&
+          destinationAddress.isNotEmpty) {
         String bookId = const Uuid().v1();
         _firestore.collection('Book').doc(bookId).set({
           'fullName': name,
           'date': date,
           'total': total,
+          'currentAddress': currentAddress,
+          'phoneNumber': phoneNumber,
+          'destinationAddress': destinationAddress
         });
         res = 'success';
       } else {

@@ -281,25 +281,25 @@ Future _newTaskModalBottomSheet(context, name) {
         final TextEditingController _dateController = TextEditingController();
         final TextEditingController _totalController = TextEditingController();
 
-        void book(String name, String date, String total) async {
-          try {
-            String res = await FireStoreMethods().bookNow(
-              date,
-              name,
-              total,
-            );
-
-
-            if (res != 'success') {
-              showSnackBar(context, res);
-            }
-          } catch (err) {
-            showSnackBar(
-              context,
-              err.toString(),
-            );
-          }
-        }
+        // void book(String name, String date, String total) async {
+        //   try {
+        //     String res = await FireStoreMethods().bookNow(
+        //       date,
+        //       name,
+        //       total,
+        //     );
+        //
+        //
+        //     if (res != 'success') {
+        //       showSnackBar(context, res);
+        //     }
+        //   } catch (err) {
+        //     showSnackBar(
+        //       context,
+        //       err.toString(),
+        //     );
+        //   }
+        // }
 
         return Container(
           child: Wrap(
@@ -398,8 +398,8 @@ Future _newTaskModalBottomSheet(context, name) {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        book(_nameController.text, _dateController.text,
-                            _totalController.text);
+                        // book(_nameController.text, _dateController.text,
+                        //     _totalController.text);
                       },
                       child: Row(
                         children: [ Text("Book Now")],

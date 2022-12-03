@@ -39,7 +39,8 @@ class _MyloginState extends State<Mylogin> {
 
   bool isremember = false;
   bool _isObscure = true;
- bool _isloading = false;
+  bool _isloading = false;
+
   void login() async {
     setState(() {
       _isloading = true;
@@ -88,7 +89,7 @@ class _MyloginState extends State<Mylogin> {
                           Container(
                               decoration: const BoxDecoration(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(12))),
+                                  BorderRadius.all(Radius.circular(12))),
                               child: Image.asset(
                                 "Assets/logo.png",
                                 width: 100,
@@ -118,7 +119,7 @@ class _MyloginState extends State<Mylogin> {
                                   return "Please Enter Your Email *";
                                 }
                                 if (!RegExp(
-                                        "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9._]+.[a-z]")
+                                    "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9._]+.[a-z]")
                                     .hasMatch(value)) {
                                   return "Please Enter a valid email";
                                 }
@@ -162,7 +163,10 @@ class _MyloginState extends State<Mylogin> {
                           ),
                           ElevatedButton(
                               onPressed: () {
-                              login();
+                                // route();
+                                login();
+                                //signIn(_emailController.text,
+                                  //  _passwordController.text);
                               },
                               child: const Text("Login")),
                           const SizedBox(
@@ -195,7 +199,7 @@ class _MyloginState extends State<Mylogin> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const Emailauth()));
+                                            const Emailauth()));
                                   },
                                 ),
                                 GestureDetector(
@@ -208,7 +212,7 @@ class _MyloginState extends State<Mylogin> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const ForgetpasswordScreen()));
+                                            const ForgetpasswordScreen()));
                                   },
                                 ),
                               ],
@@ -231,7 +235,7 @@ class _MyloginState extends State<Mylogin> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const Registerpage()));
+                                              const Registerpage()));
                                     },
                                   ),
                                 ],
@@ -322,66 +326,122 @@ class _MyloginState extends State<Mylogin> {
 //   }
 // }
 
-  void signin(String email, String password) async {
-    if (formkey.currentState!.validate()) {
-      await _auth
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((uid) =>
-      {
-        Fluttertoast.showToast(msg: "Login Successful"),
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => MyApp())),
-      }).catchError((e) {
-        Fluttertoast.showToast(msg: e!.message);
-      });
-    }
-  }
+///////////////////////// Usable Code //////////////////////////////////////////////////////////////////////////////
 
-  // void route() {
-  //   User? user = FirebaseAuth.instance.currentUser;
-  //   var kk = FirebaseFirestore.instance
-  //       .collection('users')
-  //       .doc(user!.uid)
-  //       .get()
-  //       .then((DocumentSnapshot documentSnapshot) {
-  //     if (documentSnapshot.exists) {
-  //       if (documentSnapshot.get('role') == "Admin") {
-  //         Fluttertoast.showToast(msg: "Login Successfull");
-  //         Navigator.pushReplacement(
-  //           context,
-  //           MaterialPageRoute(
-  //             builder: (context) => DashBoards(),
-  //           ),
-  //         );
-  //       } else {
-  //         Fluttertoast.showToast(msg: "Login Successfull");
-  //         Navigator.pushReplacement(
-  //           context,
-  //           MaterialPageRoute(
-  //             builder: (context) => Dashboard(),
-  //           ),
-  //         );
-  //       }
-  //     } else {
-  //       print('Document does not exist on the database');
-  //     }
-  //   });
-  // }
-  //
-  // //login function
-  // void signIn(String email, String password) async {
-  //   CircularProgressIndicator(
-  //     backgroundColor: Colors.cyan,
-  //   );
-  //   if (formkey.currentState!.validate() ){
-  //     try {
-  //       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-  //           email: email, password: password);
-  //       route();
-  //     } on FirebaseAuthException catch (e) {
-  //       Fluttertoast.showToast(msg: e.code);
-  //     }
-  //   }
-  //
-  // }
+void signin(String email, String password) async {
+  if (formkey.currentState!.validate()) {
+    await _auth
+        .signInWithEmailAndPassword(email: email, password: password)
+        .then((uid) =>
+    {
+      Fluttertoast.showToast(msg: "Login Successful"),
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => MyApp())),
+    }).catchError((e) {
+      Fluttertoast.showToast(msg: e!.message);
+    });
+  }
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// void route() {
+//   User? user = FirebaseAuth.instance.currentUser;
+//   var kk = FirebaseFirestore.instance
+//       .collection('users')
+//       .doc(user!.uid)
+//       .get()
+//       .then((DocumentSnapshot documentSnapshot) {
+//     if (documentSnapshot.exists) {
+//       if (documentSnapshot.get('role') == "Admin") {
+//         Fluttertoast.showToast(msg: "Login Successfull");
+//         Navigator.pushReplacement(
+//           context,
+//           MaterialPageRoute(
+//             builder: (context) => DashBoards(),
+//           ),
+//         );
+//       } else {
+//         Fluttertoast.showToast(msg: "Login Successfull");
+//         Navigator.pushReplacement(
+//           context,
+//           MaterialPageRoute(
+//             builder: (context) => Dashboard(),
+//           ),
+//         );
+//       }
+//     } else {
+//       print('Document does not exist on the database');
+//     }
+//   });
+// }
+//
+// //login function
+// void signIn(String email, String password) async {
+//   CircularProgressIndicator(
+//     backgroundColor: Colors.cyan,
+//   );
+//   if (formkey.currentState!.validate() ){
+//     try {
+//       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+//           email: email, password: password);
+//       route();
+//     } on FirebaseAuthException catch (e) {
+//       Fluttertoast.showToast(msg: e.code);
+//     }
+//   }
+//
+// }
+
+
+//   void route() {
+//     User? user = FirebaseAuth.instance.currentUser;
+//     var kk = FirebaseFirestore.instance
+//         .collection('Users')
+//         .doc(user!.uid)
+//         .get()
+//         .then((DocumentSnapshot documentSnapshot) {
+//       if (documentSnapshot.exists) {
+//         if (documentSnapshot.get('role') == "Admin") {
+//           Navigator.pushReplacement(
+//             context,
+//             MaterialPageRoute(
+//               builder: (context) =>  DashBoards(),
+//             ),
+//           );
+//         }else{
+//           Navigator.pushReplacement(
+//             context,
+//             MaterialPageRoute(
+//               builder: (context) =>  MyApp(),
+//             ),
+//           );
+//         }
+//       } else {
+//         print('Document does not exist on the database');
+//       }
+//     });
+//   }
+//
+//   void signIn(String email, String password) async {
+//     if (formkey.currentState!.validate()) {
+//       try {
+//         UserCredential userCredential =
+//         await FirebaseAuth.instance.signInWithEmailAndPassword(
+//           email: email,
+//           password: password,
+//         );
+//         route();
+//       } on FirebaseAuthException catch (e) {
+//         if (e.code == 'user-not-found') {
+//           print('No user found for that email.');
+//         } else if (e.code == 'wrong-password') {
+//           print('Wrong password provided for that user.');
+//         }
+//       }
+//     }
+//   }
+// }
+}
+
+

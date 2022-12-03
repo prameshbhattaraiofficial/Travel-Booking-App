@@ -10,6 +10,18 @@ class Favourite extends StatefulWidget {
 class _FavouriteState extends State<Favourite> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(
+      home: SafeArea(
+        child: Scaffold(
+          body: Column(
+            children: [
+
+
+
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

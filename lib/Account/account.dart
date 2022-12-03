@@ -7,6 +7,7 @@ import 'package:smarttourism/admin/Contact.dart';
 import 'package:smarttourism/home.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smarttourism/user/Welcomepage.dart';
+import 'package:smarttourism/user/booking_travel.dart';
 import 'package:smarttourism/user/mylogin.dart';
 import 'package:smarttourism/user/register.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -47,9 +48,50 @@ class _AccountState extends State<Account> {
                   padding: EdgeInsets.all(30),
                   child: Column(
                     children: [
-                      CircleAvatar(
-                        backgroundImage: AssetImage("Assets/pramesh.jpg"),
-                        radius: 50.0,
+                      Center(
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: 130,
+                              height: 130,
+
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 4,
+                                  color: Theme.of(context).scaffoldBackgroundColor
+                                ),
+                                boxShadow: [BoxShadow(
+                                  spreadRadius: 2, blurRadius: 10,
+                                  color: Colors.black.withOpacity(0.1),
+                                  offset: Offset(0,10)
+                                )],
+                                shape: BoxShape.circle,
+
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage('Assets/pramesh.jpg')
+                                )
+
+                              ),
+
+                            ),
+                            Positioned(
+                              bottom: 0,
+                                right: 0,
+                                child: Container(
+                                  height: 40,
+                                  width: 40,
+
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.green,
+
+                                  ),
+                                  child: Icon(Icons.edit, color: Colors.white,),
+                                ))
+                          ],
+                        ),
+
                       ),
                       Text("Pramesh Bhattarai", style: TextStyle(
                         fontFamily: "cursive",
@@ -188,6 +230,19 @@ class _AccountState extends State<Account> {
                   title: Text("Account Setting"),
                 ),
               ),
+              Card(
+
+
+                child: ListTile(
+                  onTap: (){
+                    Navigator.push((context), MaterialPageRoute(builder: (context)=> TravelBooking()));
+                  }
+                  ,
+                  leading: new Icon(Icons.book),
+                  title: Text("booking"),
+                ),
+              ),
+
               Card(
                 child: ListTile(
                   leading: new Icon(Icons.notifications),

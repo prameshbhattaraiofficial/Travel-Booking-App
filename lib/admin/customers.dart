@@ -11,14 +11,10 @@ import 'package:smarttourism/user/mylogin.dart';
 
 class CustomerAdmin extends StatefulWidget {
   const CustomerAdmin({Key? key}) : super(key: key);
-
   @override
   State<CustomerAdmin> createState() => _CustomerAdminState();
 }
-
 class _CustomerAdminState extends State<CustomerAdmin> {
-
-
   Future<void> Logout() async{
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Mylogin()));

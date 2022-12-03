@@ -136,7 +136,7 @@ class Messager extends StatefulWidget {
 
 class _MessagerState extends State<Messager> {
 
-  List<String> profilePics = [ 'Assets/1.png',
+  List<String> entries = [ 'Assets/1.png',
   'Assets/2.jpg',
   'Assets/3.jpg',
   'Assets/4.jpg',
@@ -167,7 +167,7 @@ class _MessagerState extends State<Messager> {
           child: CircleAvatar(
             backgroundColor: Colors.transparent,
             child: ClipOval(
-              child: Image.asset("Assets/${profilePics[1]}", fit: BoxFit.fill,),
+              child: Image.asset("", fit: BoxFit.fill,),
             ),
           ),
         ),
@@ -249,7 +249,7 @@ class _MessagerState extends State<Messager> {
                             child: ClipOval(
                               child: (index == 0) ?
                               IconButton(icon : Icon(Icons.add, size: 30, color: Color.fromRGBO(195, 195, 195, 1),), onPressed: () {  },) :
-                              Image.asset("Assets/${profilePics[index]}"),
+                              Image.asset("Assets/${''}"),
                             ),
                           ),
 
@@ -306,7 +306,7 @@ class _MessagerState extends State<Messager> {
 
                         child: ClipOval(
                           child:
-                          Image.asset("Assets/${profilePics[index]}"),
+                          Image.asset("Assets/${entries[index]}"),
                         ),
                       ),
 
@@ -327,14 +327,14 @@ class _MessagerState extends State<Messager> {
                   ),
                   title: Padding(
                     padding: EdgeInsets.only(bottom: 6),
-                    child: Text("Maaz Aftab", style: TextStyle(
+                    child: Text("girija prasad goirala", style: TextStyle(
                         fontFamily: "Roboto",
                         fontWeight: FontWeight.w500,
                         color: Colors.white
                     ),),
                   ),
 
-                  subtitle: Text("This is message of maaz aftab", style: TextStyle(fontFamily: "Roboto", fontWeight: FontWeight.w400,
+                  subtitle: Text("This is message of girija prasad koirala", style: TextStyle(fontFamily: "Roboto", fontWeight: FontWeight.w400,
                       color: Color.fromRGBO(123, 123, 123, 1)
                   ),),
 

@@ -1,11 +1,17 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:smarttourism/Account/account.dart';
 import 'package:smarttourism/Bottom_nav_bar/Search.dart';
-import 'package:smarttourism/Bottom_nav_bar/favourite.dart';
+import 'package:smarttourism/Bottom_nav_bar/myBooking.dart';
 import 'package:smarttourism/Bottom_nav_bar/setting.dart';
+import 'package:smarttourism/Visitors/feedback.dart';
 import 'package:smarttourism/user/Housepage.dart';
 import 'package:smarttourism/user/aboutus.dart';
+import 'package:smarttourism/user/booking_travel.dart';
+import 'package:smarttourism/user/myBooking.dart';
 import 'package:smarttourism/user/mylogin.dart';
+import 'package:smarttourism/user/Notification.dart';
 
 void main() => runApp(const MyApp());
 
@@ -38,7 +44,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const List<Widget> _widgetOptions = <Widget>[
     DefaultHome(),
     AboutUs(),
-    Favourite(),
+    TravelBooking(),
+    UserNotification(),
    Account()
   ];
 
@@ -67,8 +74,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'favourite',
+            icon: Icon(Icons.book),
+            label: 'book',
+            backgroundColor: Colors.green,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notification_add),
+            label: 'notification',
             backgroundColor: Colors.green,
           ),
 

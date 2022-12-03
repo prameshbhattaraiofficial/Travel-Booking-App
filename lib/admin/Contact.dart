@@ -10,6 +10,18 @@ class ContactAdmin extends StatefulWidget {
 }
 
 class _ContactAdminState extends State<ContactAdmin> {
+
+
+  Future<void> CALL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw "cannot launch $url";
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
@@ -44,9 +56,23 @@ class _ContactAdminState extends State<ContactAdmin> {
                       Text("Mail: Prameshbhattaraiofficial@gmail.com", style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 10
                       ),),
-                      Text("Contact No: 9863439135", style: TextStyle(
-                        fontWeight: FontWeight.bold
-                      ),),
+
+
+
+                      MaterialButton(
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        onPressed: () {
+                          CALL("tel:9863439135");
+                        },
+                        color: Colors.indigo[900],
+                        child: Text(
+                          "Call",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      )
 
 
 
